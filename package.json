@@ -1,0 +1,23 @@
+{
+  "name": "employeetracker",
+  "version": "1.0.0",
+  "description": "<!-- click each bullet to move to the associated section -->\r * [Description](#description)\r * [Install](#install)\r * [Usage](#usage)\r * [Contribute](#contribute)\r * [Test](#test)\r * [License](#license)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjointer2/employeeTracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rjointer2/employeeTracker/issues"
+  },
+  "homepage": "https://github.com/rjointer2/employeeTracker#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0",
+    "mysql": "^2.18.1"
+  }
+}
