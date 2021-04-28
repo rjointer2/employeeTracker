@@ -1,7 +1,7 @@
 
 const inquirer = require("inquirer");
-
-const DB = require('./db')
+const connection = require('./assets/connection')
+const DB = require('./db/')
 
 init()
 
@@ -19,48 +19,82 @@ function init() {
               "Exit",
           ]
       }
-  ).then((res) => {
-    console.log(res)
+  ).then((e) => {
+    if(e.action === 'Update Department' ) editDepartment()
+    if(e.action === 'Update Employee Role' ) editDepartment()
+    if(e.action === 'Update Employee' ) editDepartment()
+    if(e.action === 'Review Status' ) editDepartment()
   })
-
- /*  const { action } = await inquirer.prompt(
-    [
-      {
-          name: "action",
-          type: "list",
-          message: "What would you like to do?",
-          default: true,
-          choices: [
-              "Update Department",
-              "Update Employee Role",
-              "Update Employee",
-              "Review Status",
-              "Exit",
-          ]
-      }
-    ]
-  );
-  switch (action) {
-    case "Edit Department":
-      updateDepartments();
-      break;
-    case "Edit Employee Role":
-      editRole();
-      break;
-    case "Edit Employee":
-      editEmployee();
-      break;
-    case "View Information":
-      reviewStatus();
-      break;
-    case "Exit":
-      process.exit(0);
-      break;
-    default:
-      break;
-  } */
-
 }
+
+async function editDepartment() {
+  const { department } = await inquirer.prompt({
+    name: "department",
+    type: "list",
+    message: "Please choose the following",
+    choices: [
+      "Add New Department",
+      "Delete Department",
+      "Exit Selection"
+    ]
+  });
+
+
+
+  if( department === "Add New Department" ) console.log('yes')
+  if( department === "Delete Department" ) deleteDepartment();
+  if( department === "Exit" ) init();
+
+  
+}
+
+async function deleteDepartment() {
+  console.log('test')
+  connection.query(
+    'SELECT name AS depertments FROM department', async function (err, res) {
+    console.log(res)
+      const data = await inquirer.prompt({
+        name: 'departments',
+        message: 'Select the department you are removing...',
+        type: 'list',
+        choices: res
+      })
+    }
+  )
+  connection.query(
+    "DELETE FROM department WHERE ?", {
+      name: data.departments
+    })
+}
+
+
+/* 
+
+  const data = departmentName.department
+
+  const query = await connection.query(
+    "INSERT INTO department SET ?",
+    { name: data }, (err, res) => {
+      if (err) throw err;
+      console.log(res.affectedRows + " Department Added\n");
+      init();
+  });
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* 
 async function updateDepartments() {
     const departmentName = await inquirer.prompt({
