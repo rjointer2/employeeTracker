@@ -1,7 +1,7 @@
 -- DEPARTMENT TABLE
-INSERT INTO department (dept) VALUES ('toys');
-INSERT INTO department (dept) VALUES ('market');
-INSERT INTO department (dept) VALUES ('guest service');
+INSERT INTO department (name) VALUES ('Toys');
+INSERT INTO department (name) VALUES ('Market');
+INSERT INTO department (name) VALUES ('Guest Service');
 
 -- ROLE TABLE
 INSERT INTO role (title, salary, dept_id) VALUES ('Market Team Member', 30000, 1);
